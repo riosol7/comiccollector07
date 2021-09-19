@@ -1,0 +1,112 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class='container'>
+    <div class='row'>
+        <div class='col-md-4 p-2'>
+            <div class='container'>
+                <img class='card-img' src={{ comic.img }}>
+            </div>
+        </div>
+        <div class='col-md-4 p-2 rounded-3'>
+            <div class='order-form p-5 container card'>
+                <form action="{% url 'add_log' comic.id %}" method="post">
+                    {% csrf_token %}
+                    {{ log_form.as_p }}
+                    <input type='submit' class='btn-primary' value='place order'>
+                </form>
+                <hr>
+                <p>author: {{ comic.author }}</p>
+                <p>genre: {{ comic.genre }}</p>
+                <p>published: {{ comic.published }}</p>
+                <a href="{% url 'comics_update' comic.id %}">edit</a>
+                <a href="{% url 'comics_delete' comic.id %}">delete</a>
+            </div>
+        </div>
+        <div class='col-md-4 p-2 rounded-3'>
+            <div class='order-form p-5 container card'>
+                <table class='table'>
+                    <thead>
+                        <tr><th>Date:</th><th>type:</th></tr>
+                    </thead>
+                <tbody>
+                {% for log in comic.log_set.all %}
+                <tr>
+                    <td> {{log.date}} </td>
+                    <td> {{log.get_order_display}} </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <hr>
+</div>
+<div class='container'>
+    <div class='row'>
+        <h3>POP related</h3>
+        {% if comic.funkos.count %}
+        {% for funko in comic.funkos.all %}
+        <div class='col-md-2 p-2'>
+            <div class='container'>
+                <div class="card bg-dark text-white">
+                    <img class="card-img rounded-3'" src={{ funko.img }}>
+                    <div class='card-img-overlay'>
+                        <div class='d-flex flex-row-reverse'>
+                            <a href="{% url 'funkos_detail' funko.id %}"><span class="iconify rounded border border-start-0" style='font-size:24px; color:white; background: black' data-icon="mdi:book-information-variant"></span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        {% else %}
+        <h5> none related </h5>
+        {% endif %}
+    </div>
+    <hr>
+    <div class='row'>
+        <h3>all POP</h3>
+        {% if funkos.count %}
+        {% for funko in funkos.all %}
+        <div class='col-md-2 p-2'>
+            <div class='container'>
+                <div class="card bg-dark text-white">
+                    <img class="card-img rounded-3'" src={{ funko.img }}>
+                    <div class='card-img-overlay'>
+                        <div class='row'>
+                            <div class='col-sm-6'>
+                                 <form action="{% url 'assoc_funko' comic.id funko.id %}" method="post">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn-dark">add</button>
+                                </form>
+                            </div>
+                            <div class='col-sm-6 d-flex flex-row-reverse'>
+                                <a href="{% url 'funkos_detail' funko.id %}"><span class="iconify rounded border border-start-0" style='font-size:24px; color:white; background: black' data-icon="mdi:book-information-variant"></span></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        {% else %}
+        <h5>all added!</h5>
+        {% endif %}
+    </div>
+</div>
+
+
+<script>
+    const dateEl = document.getElementById('id_date');
+    M.Datepicker.init(dateEl, {
+        format: 'yyyy-mm-dd',
+        defaultDate: new Date(),
+        setDefaultDate: true,
+        autoClose: true
+    });
+    const selectEl = document.getElementById('id_order');
+    M.FormSelect.init(selectEl)
+</script>
+{% endblock %}

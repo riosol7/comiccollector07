@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class='container'>
+    <div class='row'>
+        <div class='col-md-4'>
+            <div class='container'>
+                <img class='card-img rounded-3' src={{funko.img}}>
+            </div>
+        </div>
+        <div class='col-md-8'>
+            <div class='container card order-form'>
+                <p>{{funko.name}}</p>
+                <p>{{funko.description}}</p>
+                <p>{{funko.price}}</p>  
+                <a href="{% url 'funkos_update' funko.id %}">edit</a>
+                <a href="{% url 'funkos_delete' funko.id %}">delete</a>
+            </div>    
+        </div>    
+    </div>
+</div>
+{% endblock %}

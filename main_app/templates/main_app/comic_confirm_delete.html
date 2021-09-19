@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+<div class='container mb-5 my-5 p-5'>
+    <div class='row mb-5'>
+        <div class='col-lg-4'>
+        </div>
+        <div class='col-lg-4 mb-5 my-5'>
+        <h3>Are you sure about that??{{ object.name}}</h3>
+            <form action='' method='POST'>
+                {% csrf_token %}
+                <input type='submit' value='Bye :(' class='btn'>
+                <a href="{% url 'detail' comic.id %}"> cancel</a>
+            </form>
+        </div>
+        <div class='col-lg-4'>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+{% endblock %}

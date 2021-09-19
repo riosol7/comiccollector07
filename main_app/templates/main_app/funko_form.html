@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+<div class='container mb-5'>
+    <div class='row'>
+        <div class='col-lg-4'>
+        </div>
+        <div class='col-lg-4 my-5 mb-5'>
+            <form action='' method='post'>
+                {% if object %}
+                <h1> Edit <span class='teal-text'>{{object.name}}</span></h1>
+                {% else %}
+                <h1>Add funko</h1>
+                {% endif %}
+                {% csrf_token %}        
+                <table>
+                    {{form.as_table}}
+                </table>
+                <input type='submit' value='done' class='btn'/>
+            </form>
+        </div>
+        <div class='col-lg-4'>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}

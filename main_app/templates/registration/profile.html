@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+{% if messages %}
+{% for message in messages %}
+<div class='alert alert-{{message.tags}} '>
+  {{message}}
+</div>
+{% endfor %}
+{% endif %}
+
+<div class='container'>
+  <div class='row'>
+    <div class='col-md-4'>
+      <img class='card-img' style='border-radius:50%;' src={{user.profile.image.url}}>
+    </div>
+    <div class='col-md-2'>
+      <h1>{{user.username}}</h1>
+      <p> {{user.email }} </p>
+    </div>
+    <div class='col-md-6'>
+    <h2>edit account</h2>  
+      <form method='post' enctype='multipart/form-data'>
+        {% csrf_token %}
+        {{ u_form|crispy }}
+        {{ p_form|crispy }}
+        <input type='submit' class='btn-primary' value='update'>
+      </form>
+    </div>
+  </div>
+</div> 
+
+
+
+{% endblock %}

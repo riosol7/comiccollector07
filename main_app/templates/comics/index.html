@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+<div class='container'>
+{% if user.is_authenticated %}
+<a href="{% url 'comics_create' %}"><span class="iconify" style='font-size:36px; color: white' data-icon="carbon:add-alt"></span></a>
+{% endif %}
+  <div class='row '>
+  {% for comic in comics %}
+    <div class=' col-md-3 mb-5 p-2'>
+      <div class='container'>
+          <div class="card bg-dark text-white">
+            <img class="card-img" src={{ comic.img }}>
+            <div class="card-img-overlay">
+              <div class="d-flex flex-row-reverse">
+                <a href="{% url 'detail' comic.id %}"><span class="iconify rounded border border-start-0" style='font-size:24px; color:white; background: black' data-icon="mdi:book-information-variant"></span></a>
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+  {% endfor %}
+  </div>
+</div>
+<br/>
+
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+
+<div class='container mb-5 my-5 p-5'>
+    <div class='row mb-5'>
+        <div class='col-lg-4'>
+        </div>
+        <div class='col-lg-4 mb-5 my-5'>
+        <h4>are you sure you want to delete <span>{{object.name}}</span>?</h4>
+           <form action='' method="POST">
+                {% csrf_token %}
+                <input type='submit' value='bye :(' class='btn'/>
+                <a href="{% url 'funkos_detail' funko.id %}">cancel</a>
+            </form>
+        </div>
+        <div class='col-lg-4'>
+        </div>
+    </div>
+</div>
+
+
+
+
+{% endblock %}

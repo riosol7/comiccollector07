@@ -1,0 +1,98 @@
+
+
+body {
+  font-family: "Lato", sans-serif;
+  transition: background-color .5s;
+}
+
+#comic-culture{
+font-size: 26px;
+}
+
+.hidden{
+  color: transparent;
+}
+
+
+.shadow-5{
+  background: #f1f1f1;
+}
+
+.order-form{
+  background: #111111;
+  color: whitesmoke;
+}
+
+.table{
+  color: whitesmoke;
+}
+
+.banner{
+  background: rgba(0,0,0,0.7) url('https://images.unsplash.com/photo-1596012913124-848b60779d8d?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cG9wJTIwYXJ0fGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&w=1000&q=80');
+  background-size: cover;
+  background-blend-mode: darken;
+}
+
+#search-icon{
+  margin-left: 20px;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 20px;
+  color: black;
+  border-radius: 50%;
+  border-style: ridge;
+  z-index: 1;
+  background-color: #f1f1f1;
+}
+
+.sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+#main {
+  transition: margin-left .5s;
+  padding: 12px;
+  background: rgb(0, 0, 0);
+}
+
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+
+@media screen and (max-width: 600px) {
+  div.comic-author{
+    display:none;
+  }
+}
