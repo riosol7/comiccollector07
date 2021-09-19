@@ -29,7 +29,7 @@ def comics_detail(request, comic_id):
 
 class ComicCreate(LoginRequiredMixin,CreateView):
     model = Comic
-    fields = ['title','author','genre','published']
+    fields = ['title','author','genre','img','published']
     def form_valid(self, form):
         form.instance.user=self.request.user
         return super().form_valid(form)
