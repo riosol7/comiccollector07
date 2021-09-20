@@ -8,6 +8,10 @@
 
  - update profile. created a new form for the users to update their profile information along with their profile img. 
 
+HEROKU APP:
+https://comiccollector07.herokuapp.com/
+
+
 # resources 
 - bootstrap
 - django-crispy_forms
