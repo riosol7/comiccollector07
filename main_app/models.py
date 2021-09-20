@@ -63,12 +63,16 @@ class Photo(models.Model):
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+    ##https://docs.djangoproject.com/en/3.2/topics/files/
+    ## django required installation of pillow, a library of processing images from PIP
+    ## ImageField is a filefield with uploads restricted to image formats only... attributes consists of width, height and other attributes that are available to FileField.
     image = models.ImageField(default='default.jpg', upload_to='profile_pics')
 
     def __str__(self):
         return f"{self.user.username} Profile"
 
     def save(self, *args, **kwargs):
+        ##overwrite the function of the parent class with super(). 
         super().save(*args, **kwargs)
 
 

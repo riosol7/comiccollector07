@@ -106,6 +106,8 @@ def signup(request):
     if request.method =='POST':
         form = UserSignupForm(request.POST)
         if form.is_valid():
+            ## cleaned_data will always contain a key for fields defined in the Form.
+            ## returns a dictionary of validated form input fields and their values
             username = form.cleaned_data.get('username')
             messages.success(request, f'Account created for {username}')
             user = form.save()
@@ -121,11 +123,17 @@ def signup(request):
 @login_required
 def profile(request):
     if request.method =='POST':
+        ##https://docs.djangoproject.com/en/3.2/intro/tutorial04/
+        ## request.POST (call) is a dictionary-like object that allows the user to access submitted data by key name. 
+        ## Two seperate variables grabbing the forms and having the arguments be the call and instance of the accessed user model object/profile
         u_form = UserUpdateForm(request.POST, instance=request.user)
         p_form = ProfileUpdateForm(request.POST, request.FILES, instance=request.user.profile)
         if u_form.is_valid() and p_form.is_valid():
             u_form.save()
             p_form.save()
+            ## https://docs.djangoproject.com/en/3.2/ref/contrib/messages/
+            ## message framework, allows messages to be display filtered by templates or displayed differently in views.
+            ## operating like a one-time notification message also known as 'flash messages'
             messages.success(request, f'Account updated')
             return redirect('profile')
     else:
